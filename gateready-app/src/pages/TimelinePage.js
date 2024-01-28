@@ -12,7 +12,10 @@ import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, keyframes } from '@mui/system';
-
+import LuggageIcon from '@mui/icons-material/Luggage';
+import SecurityIcon from '@mui/icons-material/Security';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import { getShopRecommendations } from '../api';
 export default function TimelinePage() {
         // Keyframes for icon animation
         const rotate = keyframes`
@@ -28,8 +31,19 @@ export default function TimelinePage() {
         const [modalOpen, setModalOpen] = useState(false);
         const [searchTerm, setSearchTerm] = useState('');
         const [searchResults, setSearchResults] = useState([]);
+        const [recommendations, setRecommendations] = useState([]); 
+        const [shopsArray, setShopsArray] = useState([]);// [ { name: 'Starbucks', location: 'Terminal A' }, ... 
+        const handleOpenModal = () => {
+          setModalOpen(true)
+          getShopRecommendations().then(res => {
+            console.log(res.rec)
+          setShopsArray(Object.entries(res.rec).map(([name, details]) => ({
+              name,
+              ...details
+            })));
+          });
+        };
 
-        const handleOpenModal = () => setModalOpen(true);
         const handleCloseModal = () => setModalOpen(false);
 
         const handleSearch = (event) => {
@@ -63,23 +77,25 @@ export default function TimelinePage() {
       const [currentTime, setCurrentTime] = useState(new Date());
       const initalItems = [
         {
-            time: '12:30 am',
+            time: '10:30 am',
             title: 'Home',
             icon: <HomeIcon />,
             textposition: 'left',
             },
             {
-            time: '1:00 am',
+            time: '12:40 pm',
             title: 'Check-in',
             textposition: 'right',
+            icon: <LuggageIcon />,
             },
             {
-            time: '3:00 am',
+            time: '12:50 pm',
             title: 'TSA',
             textposition: 'left',
+            icon: <SecurityIcon />,
             },
-
       ]
+
       const [items, setItems] = useState(initalItems);
       const addNewItem = () => {
         const newItem = {
@@ -89,24 +105,15 @@ export default function TimelinePage() {
         };
         setItems([...items, newItem]);
       };
-       
-      useEffect(() => {
-        // Update current time every minute
-        const interval = setInterval(() => {
-          setCurrentTime(new Date());
-        }, 60000);
-    
-        // Cleanup interval on component unmount
-        return () => clearInterval(interval);
-      }, []);
-    
+      
       // Function to determine color based on the item's time
       const getColorForTime = (itemTime) => {
         const today = new Date();
         const itemDateTime = new Date(today.toDateString() + ' ' + itemTime);
         return currentTime >= itemDateTime ? 'primary' : 'grey';
       };
-    
+  
+
   return (
     <Container>
     <Box style={{ height: '500px', overflow: 'auto', padding: '20px' }}> 
@@ -144,12 +151,12 @@ export default function TimelinePage() {
                             variant="body2"
                             color="white"
                             >
-                            5:00 am
+                            1:00 pm
                             </TimelineOppositeContent>
                             <TimelineSeparator>
                             <TimelineConnector sx={{ height: '40px' }} />
-                            <TimelineDot color={getColorForTime('5:00 am')}>
-                                <FastfoodIcon />
+                            <TimelineDot color={getColorForTime('1:00 pm')}>
+                                <FlightTakeoffIcon />
                             </TimelineDot>
                             <TimelineConnector sx={{ height: '40px'}}/>
                             </TimelineSeparator>
@@ -202,10 +209,16 @@ export default function TimelinePage() {
           />
           <Divider sx={{ my: 2 }} />
           <List sx={{ maxHeight: '150px', overflow: 'auto' }}> {/* Scrollable list */}
-            {searchResults.map((result, index) => (
-              <ListItem key={index} sx={{ borderBottom: '1px solid #ddd', '&:last-child': { border: 0 } }}>
-                {/* Display search result with separators */}
-              </ListItem>
+           {shopsArray.map((shop, index) => (
+                <ListItem key={index} sx={{ borderBottom: '1px solid #ddd', '&:last-child': { border: 0 } }}>
+                    <Card sx={{ width: '100%' }}>
+                        <CardContent>
+                            <Typography variant="h6">{shop.name}</Typography>
+                            <Typography variant="body2">Shop Type: {shop.shop_type}</Typography>
+                            <Typography variant="body2">Distance: {shop.distance.toFixed(2)} miles</Typography>
+                        </CardContent>
+                    </Card>
+                </ListItem>
             ))}
           </List>
         </Box>

@@ -116,7 +116,7 @@ const BookingCard = () => {
             </Stack>
             <Box>
                 <Typography variant="body2" color="white">
-                  Start Trip in {totalDuration & totalAvailableTime? (totalAvailableTime - totalDuration) < 60?(totalAvailableTime - totalDuration)+'min':(totalAvailableTime - totalDuration)/60+'hr':null} 
+                  Start Trip in {totalDuration & totalAvailableTime? (totalAvailableTime - totalDuration) < 60?(totalAvailableTime - totalDuration)+'min':parseFloat(((totalAvailableTime - totalDuration)/60).toFixed(2))+'hr':null} 
                 </Typography>
             </Box>
           <Button 
