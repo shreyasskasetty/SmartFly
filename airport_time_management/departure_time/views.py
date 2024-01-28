@@ -7,7 +7,9 @@ from datetime import datetime
 import requests
 # from gate_time.models import Gate
 
-def get_dt(request, dep_day : datetime, flight_number):
+def get_dt(request):
+    dep_day = datetime(request.GET.get('day')) #expected format - YYYY-MM-DD
+    flight_number = request.GET.get('flightNum')
     years = dep_day.year
     month = dep_day.month
     day = dep_day.day
