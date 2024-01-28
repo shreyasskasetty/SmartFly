@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TotalTimeConfig(AppConfig):
+class FlightDetailsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'total_time'
+    name = 'flight_details'
