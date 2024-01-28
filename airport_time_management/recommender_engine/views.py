@@ -44,35 +44,45 @@ def get_rec(request):
         # def get_proximity_aware_recommendations(user_preferences, user_latitude, user_longitude):
 
                 # Read user coordinates from a JSON file
-        try:
-            user_latitude = float(lat)
-            user_longitude = float(lng)
+    
+        user_latitude = float(lat)
+        user_longitude = float(lng)
 
-            # Get proximity-aware recommendations for the user with user-provided location
-            # proximity_aware_recommendations = get_proximity_aware_recommendations(user_preferences, user_latitude, user_longitude)
-                        # Combine user preferences into a single input
-            input_data = user_preferences
-            
-            # Vectorize the input using the same TF-IDF vectorizer
-            input_features = vectorizer.transform(input_data)
-            
-            # Predict preferences using the trained classifier
-            predicted_preferences = classifier.predict(input_features)
-            
-            # Calculate distances and filter recommendations based on proximity
-            df_shops["distance"] = df_shops.apply(lambda row: calculate_distance(user_latitude, user_longitude, row["latitude"], row["longitude"]), axis=1)
-            recommendations = df_shops[df_shops["shop_type"] == predicted_preferences[0]].sort_values(by="distance").head(2)["name"].tolist()
-            
-            proximity_aware_recommendations =  recommendations
+        # Get proximity-aware recommendations for the user with user-provided location
+        # proximity_aware_recommendations = get_proximity_aware_recommendations(user_preferences, user_latitude, user_longitude)
+                    # Combine user preferences into a single input
+        input_data = user_preferences
+        
+        # Vectorize the input using the same TF-IDF vectorizer
+        input_features = vectorizer.transform(input_data)
+        
+        # Predict preferences using the trained classifier
+        predicted_preferences = classifier.predict(input_features)
+        
+        # Calculate distances and filter recommendations based on proximity
+        df_shops["distance"] = df_shops.apply(lambda row: calculate_distance(user_latitude, user_longitude, row["latitude"], row["longitude"]), axis=1)
+        recommendations = df_shops[df_shops["shop_type"] == predicted_preferences[0]].sort_values(by="distance").head(2)
+        
+        proximity_aware_recommendations =  recommendations
 
-            # Print recommendations
-            # print("User Location (Latitude:", user_latitude, "Longitude:", user_longitude, ")")
-            # print("Proximity-Aware Recommendations:")
-            # for recommendation in proximity_aware_recommendations:
-            #     print("- " + recommendation)
+        # Print recommendations
+        # print("User Location (Latitude:", user_latitude, "Longitude:", user_longitude, ")")
+        # print("Proximity-Aware Recommendations:")
+        # for recommendation in proximity_aware_recommendations:
+        #     returnDict = {'0':}
 
-        # except FileNotFoundError:
-        #     print("Error: user_coordinates.json not found.")
-        except (ValueError, TypeError):
-            print("Error: Invalid JSON format in user_coordinates.json.")
-        return JsonResponse({'rec': proximity_aware_recommendations})
+    # except FileNotFoundError:
+    #     print("Error: user_coordinates.json not found.")
+
+        result_dict = {}
+        for index, row in proximity_aware_recommendations.iterrows():
+             shop_name = row['name']
+             result_dict[shop_name] = {
+            'latitude': row['latitude'],
+            'longitude': row['longitude'],
+            'shop_type': row['shop_type'],
+            'distance': row['distance']
+        }
+    
+    # Return the result in JSON format
+        return JsonResponse({'rec': result_dict})
