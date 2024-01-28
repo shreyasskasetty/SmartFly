@@ -23,5 +23,6 @@ urlpatterns = [
     path('gates/', include('gate_time.urls')),
     path('arrival-time/', include('arrival_time.urls')),
     path('tsa-wait-time/', include('tsa_wait_time.urls')),
-    path('departure-time/', include('departure_time.urls'))
+    path('departure-time/', include('departure_time.urls')),
+    path('misc-time/',include('misc_time.urls'))
 ]
