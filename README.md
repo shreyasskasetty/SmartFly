@@ -11,7 +11,7 @@ GateReady is a cutting-edge airport time management application designed to stre
 - **User Activity History**: Tracks user preferences for more personalized future recommendations.
 - **Miscellaneous Time Management**: Helps manage various pre-flight activities for a stress-free airport experience.
 
-## Setup
+## Backend Setup
 To get started with GateReady, follow these steps:
 
 ## Dependencies
@@ -21,8 +21,9 @@ This project requires the following Python libraries:
 - `django-heroku`
 - `psycopg2-binary`
 - `django`
+- `googlemaps`
 
-## Installation
+## Backend Installation
 
 To install these dependencies, you can use `pip`. It's recommended to use a virtual environment to avoid conflicts with other projects or system-wide packages.
 
@@ -32,6 +33,30 @@ If you don't have virtualenv installed, install it first:
 
 ```bash
 pip install virtualenv
+pip install django
+pip install django-heroku
+pip install google maps
+pip install psycopg2-binary
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+
+## Front End Setup
+
+## Front End Dependencies
+
+- `node latest version`
+- `React`
+- `Material UI`
+- `CSS`
+
+## Steps:
+```
+  cd gateready-app/
+  npm intsall
+  npm start
 ```
 HTTP Requests Used
 ```
