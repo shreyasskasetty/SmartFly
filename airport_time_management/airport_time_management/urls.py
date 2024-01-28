@@ -24,5 +24,6 @@ urlpatterns = [
     path('arrival-time/', include('arrival_time.urls')),
     path('tsa-wait-time/', include('tsa_wait_time.urls')),
     path('departure-time/', include('departure_time.urls')),
-    path('misc-time/',include('misc_time.urls'))
+    path('misc-time/',include('misc_time.urls')),
+    path('recommend/',include('recommender_engine.urls'))
 ]
