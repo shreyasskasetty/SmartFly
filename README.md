@@ -32,8 +32,9 @@ If you don't have virtualenv installed, install it first:
 
 ```bash
 pip install virtualenv
-
+```
 HTTP Requests Used
+```
 'gates/get-gate/’ - returns a json containing the details of all the gates
 'gates/get-walk-time/’ - returns the time taken to walk from any point to the certain gate
 'arrival-time/calculate-arrival/’ - returns the time it will take from current location to the airport
@@ -43,4 +44,4 @@ HTTP Requests Used
 ‘misc-time/get-walk-time/’ - returns the time it will take to walk from any point to a certain shop
 'recommend/get-rec/’ - returns the recommended places to visit based on user preferences and location
 'flight-details/get-flight-details/’ - returns the details of a flight with a certain flight number
-
+```
