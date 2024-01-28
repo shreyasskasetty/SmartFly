@@ -16,7 +16,7 @@ def get_flight_details(request):
         "flightNumber": 'AB123',
         "destination": 'New York',
         "date": '2024-01-28',
-        "departTime": '10:00 am',
+        "departTime": '12:00 pm',
         "duration": "23 h 25 m",
         "price": "$790"
     }

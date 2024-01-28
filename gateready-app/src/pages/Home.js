@@ -5,7 +5,7 @@ import { Container } from '@mui/material';
 
 const Home = () => {
   return (
-    <Container maxWidth="sm" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Container maxWidth="sm" style={{display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop: '64px'}}>
       <BookingCard />
     </Container>
   );

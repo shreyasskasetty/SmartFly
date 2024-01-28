@@ -3,7 +3,6 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 const TopNavbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,8 +25,9 @@ const TopNavbar = () => {
   const title = determineTitle(location.pathname);
 
   return (
-    <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
+    <AppBar boxShadow={1} elevation={5} position="static" style={{background: 'transparent'}}>
       <Toolbar>
+      <img src="/logo1.png" alt="Logo" style={{ marginRight: 10, height: '25px' }} />
         {location.pathname === '/gate-ready/timeline' && (
           <IconButton edge="start" color="inherit" aria-label="back" onClick={() => navigate(-1)}>
             <ArrowBackIcon />

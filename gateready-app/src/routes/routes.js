@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Spinner from "./../Layout/Spinner";
 import { Navigate } from "react-router-dom";
 import BottomNavbar from '../components/BottomNavbar.js';
-import TopNavbar from "../components/TopNavbar";
+import TopNavbar from '../components/TopNavbar.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
