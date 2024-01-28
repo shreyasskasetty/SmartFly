@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'misc_time.apps.MiscTimeConfig',
     'gate_time.apps.GateTimeConfig',
     'departure_time.apps.DepartureTimeConfig',
+    'total_time.apps.TotalTimeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
