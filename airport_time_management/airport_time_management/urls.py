@@ -20,5 +20,7 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shops/', include('misc_time.urls')),
-    path('gates/', include('gate_time.urls'))
+    path('gates/', include('gate_time.urls')),
+    path('arrival-time/', include('arrival_time.urls')),
+    path('tsa-wait-time/', include('tsa_wait_time.urls'))
 ]
