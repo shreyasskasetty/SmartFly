@@ -1,7 +1,7 @@
-# GateReady
+# SmartFly
 
 ## Introduction
-GateReady is a cutting-edge airport time management application designed to streamline and enhance the travel experience for air passengers. With real-time updates and personalized recommendations, GateReady ensures that travelers are well-informed, efficiently guided, and able to make the most of their time at the airport.
+SmartFly is a cutting-edge airport time management application designed to streamline and enhance the travel experience for air passengers. With real-time updates and personalized recommendations, SmartFly ensures that travelers are well-informed, efficiently guided, and able to make the most of their time at the airport.
 
 ## Features
 - **TSA Wait Time Calculation**: Provides real-time TSA security check wait times.
